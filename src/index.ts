@@ -38,7 +38,7 @@ const autoType = (val: string): boolean | number | string => {
   if (val === '') {
     return true;
   }
-  if (val.match(numberRegex) === null) {
+  if (val.match(numberRegex) !== null) {
     return parseFloat(val);
   }
   return val;
