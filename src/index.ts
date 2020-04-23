@@ -17,6 +17,7 @@ export interface IStringifyConfig {
 }
 
 const sectionNameRegex = /\[(.*)]$/;
+const numberRegex = /^\-?\d*\.?\d+(e\-?\d+)?$/;
 
 export type IniValue = string | number | boolean | IIniObjectSection | IIniObjectDataSection;
 
@@ -37,7 +38,7 @@ const autoType = (val: string): boolean | number | string => {
   if (val === '') {
     return true;
   }
-  if (!isNaN(parseFloat(val))) {
+  if (val.match(numberRegex) === null) {
     return parseFloat(val);
   }
   return val;
